@@ -1,0 +1,7 @@
+{
+    "python.linting.pylintArgs": [
+        "--disable=signature-differs, missing-class-docstring, missing-function-docstring, missing-module-docstring",
+        "--good-names=e",
+        "--load-plugins=pylint_django",
+    ]
+}
