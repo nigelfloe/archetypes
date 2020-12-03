@@ -1,0 +1,1 @@
+Prototype of Tarot card reference app by David Rowe.
