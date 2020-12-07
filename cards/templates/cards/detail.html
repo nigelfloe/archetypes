@@ -3,3 +3,12 @@
     <li>Deck: {{ card.deck }}</li>
     <li>{{ card.name }}</li>
 </ul>
+
+<h2>Sibling Cards</h2>
+<ul>
+{% for sibling in siblings %}
+    <li><a href="{% url 'cards:detail' sibling.slug %}">{{ sibling }}</a></li>
+{% endfor %}
+</ul>
+
+<a href="{% url 'cards:index' %}">Card Index</a>
