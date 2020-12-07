@@ -4,9 +4,7 @@
         <li>Archetype: {{ archetype.id }}
             <ul>
             {% for card in archetype.card_set.all %}
-                {% with slugs=card.split_slug %}
-                    <li><a href="{% url 'detail' slugs.0 slugs.1 %}">{{ card }}</a></li>
-                {% endwith %}
+                <li><a href="{% url 'cards:detail' card.slug %}">{{ card }}</a></li>
             {% endfor %}
             </ul>
         </li>

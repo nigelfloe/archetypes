@@ -1,18 +1,25 @@
 import logging
 
-from django.shortcuts import get_object_or_404, render
+from django.views import generic
 
 from .models import Archetype, Card
 
 logger = logging.getLogger('root')
 
 
-def index(request):
-    archetype_list = Archetype.objects.order_by('id')
-    context = {'archetype_list': archetype_list}
-    return render(request, 'cards/index.html', context)
+class IndexView(generic.ListView):
+    template_name = 'cards/index.html'
+    context_object_name = 'archetype_list'
+
+    def get_queryset(self):
+        return Archetype.objects.order_by('id')
 
 
-def detail(request, deck, name):
-    card = get_object_or_404(Card, slug=f'{deck}-{name}')
-    return render(request, 'cards/detail.html', {'card': card})
+class DetailView(generic.DetailView):
+    model = Card
+    template_name = 'cards/detail.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['siblings'] = self.object.archetype.card_set.exclude(deck=self.object.deck)
+        return context
