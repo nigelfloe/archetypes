@@ -2,6 +2,8 @@
     "python.linting.pylintArgs": [
         "--disable=signature-differs, missing-class-docstring, missing-function-docstring, missing-module-docstring",
         "--good-names=e",
+        // ignore migration files (e.g.: 0004_migration_name.py)
+        "--ignore-patterns=^\\d{4}_\\w+.py$",
         "--load-plugins=pylint_django",
     ]
 }
