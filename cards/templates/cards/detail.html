@@ -1,8 +1,7 @@
+{% load static %}
+
 <h1>{{ card }}</h1>
-<ul>
-    <li>Deck: {{ card.deck }}</li>
-    <li>{{ card.name }}</li>
-</ul>
+<img src="{% static card.image.url %}" alt="My image">
 
 <h2>Sibling Cards</h2>
 <ul>

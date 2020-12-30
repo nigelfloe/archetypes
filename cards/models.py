@@ -20,6 +20,7 @@ class Archetype(models.Model):
 class Card(models.Model):
     archetype = models.ForeignKey(Archetype, on_delete=models.CASCADE)
     deck = models.CharField(max_length=10)
+    image = models.ImageField(null=True)
     name = models.CharField(max_length=100)
     rank = models.CharField(max_length=10)
     slug = AutoSlugField(
@@ -32,10 +33,6 @@ class Card(models.Model):
 
     def __str__(self):
         return f'{self.deck}: {self.name}'
-
-    @property
-    def split_slug(self):
-        return self.slug.split('-', maxsplit=1)
 
     def save(self, *args, **kwargs):
         if not self.slug:
